@@ -1,0 +1,45 @@
+from collections import defaultdict
+freq = defaultdict(int)
+seqs = defaultdict(set)
+ngly = re.compile('N.[ST]')
+dam = db.modification('N',+0.984)
+for pi in db.ions():
+    p = pi.peptide
+    pepseq = p.sequence
+    for al in p.alignments:
+        pracc = al.protein.accession
+        rcontext = al.metadata.get('right-context','')
+        lcontext = al.metadata.get('left-context','')
+        ltryptic = False
+        if lcontext == "" or (lcontext[-1] in 'KR' and pepseq[0] not in 'P'):
+            ltryptic = True
+        rtryptic = False
+        if rcontext == "" or (pepseq[-1] in 'KR' and rcontext[0] not in 'P'):
+            rtryptic = True
+        if not ltryptic or not rtryptic:
+            continue
+        sites = set()                                                                                      
+        count = 0                                                                                          
+        for m in ngly.finditer(p.sequence+rcontext):                                                       
+            if m.start() < len(p.sequence):                                                                
+                count += 1                                                                                 
+                sites.add(m.start()+1)                                                                     
+        if count >= 1:                                                                                     
+            for ms in pi.modifiedSites:                                                                    
+                if ms.modification == dam:                                                                 
+                    if ms.position in sites:                                                               
+                        prpos = al.start+ms.position
+                        freq[(pracc,prpos)] += len(pi.spectra())
+                        freq[(pracc,prpos)] += len(pi.spectra())
+                        pepseq1 = list(pepseq)
+                        pepseq1[ms.position-1] = pepseq1[ms.position-1].lower()
+                        pepseq1 = "".join(pepseq1)
+                        seqs[(pracc,prpos)].add(pepseq1)
+first = True
+for pracc,prpos in sorted(freq):
+    if first:
+        print("\t".join("UniProtAcc AAPosition SpectralCount DistinctPeptideCount Peptides".split()))
+        first=False
+    spcnt = freq[(pracc,prpos)] 
+    pepseqs =  ",".join(sorted(seqs[(pracc,prpos)]))
+    print("\t".join(map(str,[pracc,prpos,spcnt,len(seqs[(pracc,prpos)]),pepseqs])))

@@ -36,8 +36,8 @@ Download the [run.sh](run.sh) script only to execute using the docker container.
 
 Download the lastest release:
 ```
-  %prompt% wget 'https://github.com/glygen-glycan-data/GlycoSight/releases/download/GlycoSight-1.0.0/GlycoSight-1.0.0.tgz' | tar zxf -
-  %prompt% cd GlycoSight
+  %prompt>% wget 'https://github.com/glygen-glycan-data/GlycoSight/releases/download/GlycoSight-1.0.0/GlycoSight-1.0.0.tgz' | tar zxf -
+  %prompt>% cd GlycoSight
 ```
 Execute using `nlinkedsites.sh` script
 ```

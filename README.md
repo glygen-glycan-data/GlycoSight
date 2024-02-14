@@ -1,5 +1,11 @@
 # GlycoSight
 
+GlycoSight parses peptide identification results, in mzIdentML format, to find putative N-glycosylation sites. The analyzed sample must have been prepared with PNGase-F, an enzyme which cleaves N-glycans from the Asn amino-acid and deamidates it, and changes the molecular weight of the Asn residue by +0.98. The output table provides the UniProt accession, the amino-acid position of the Asn exibiting deamidation, the number of tandem mass spectra which show deamidation of the residue, the number of distinct peptide sequences which show deamindation of the residue, and the peptide sequences themselves. Peptide sequences are separated by a comma, and the corresponding Asn residue shown in lowercase. 
+
+Notes: 
+1. mzIdentML peptide identication results are filtered at 1% spectral FDR.
+2. The sample is presumed to be human (peptides are re-aligned to UniProt human protein sequences)
+
 ## Docker container usage
 
 Use script [run.sh](run.sh) to execute using the docker container.
@@ -28,7 +34,7 @@ Use script [run.sh](run.sh) to execute using the docker container.
 
 ## Direct usage
 
-Use script `nlinkedsites.sh` to execute using the docker container.
+Use script `nlinkedsites.sh` to execute directly
 ```
   %<prompt>% ../bin/nlinkedsites.sh data/PDC000251/*.mzid.gz > output.tsv
   Parsing file PDC000251/01CPTAC_OVprospective_G_JHUZ_20160317_QE_r01.mzid.gz... done.

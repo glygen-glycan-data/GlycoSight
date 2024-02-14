@@ -6,8 +6,11 @@ FULLNAME="${NAME}-${VERSION}"
 
 echo "$FULLNAME"
 
+rm -rf build
+mkdir -p build/$FULLNAME/$NAME
+cp -r bin data lib fasta VERSION Dockerfile build.sh run.sh *VER build/$FULLNAME/$NAME
 rm -f dist/$FULLNAME*
-tar cvzf dist/$FULLNAME.tgz bin data lib fasta VERSION Dockerfile build.sh run.sh *VER
+(cd build/$FULLNAME; tar cvzf ../../dist/$FULLNAME.tgz $NAME )
 
 ( cd dist; md5sum $FULLNAME.tgz > $FULLNAME.md5 ; touch $FULLNAME.txt )
 if [ "$1" ]; then 

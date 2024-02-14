@@ -9,8 +9,7 @@ Notes:
 
 ## Docker container usage
 
-Use script [run.sh](run.sh) to execute using the docker container.
-
+Download the [run.sh](run.sh) script only to execute using the docker container.
 ```
   %<prompt>% ./run.sh data/PDC000251/*.mzid.gz > output.tsv
   Parsing file PDC000251/01CPTAC_OVprospective_G_JHUZ_20160317_QE_r01.mzid.gz... done.
@@ -35,9 +34,14 @@ Use script [run.sh](run.sh) to execute using the docker container.
 
 ## Direct usage
 
-Use script `nlinkedsites.sh` to execute directly
+Download the lastest release:
 ```
-  %<prompt>% ../bin/nlinkedsites.sh data/PDC000251/*.mzid.gz > output.tsv
+  %prompt% wget 'https://github.com/glygen-glycan-data/GlycoSight/releases/download/GlycoSight-1.0.0/GlycoSight-1.0.0.tgz' | tar zxf -
+  %prompt% cd GlycoSight
+```
+Execute using `nlinkedsites.sh` script
+```
+  %<prompt>% ./bin/nlinkedsites.sh data/PDC000251/*.mzid.gz > output.tsv
   Parsing file PDC000251/01CPTAC_OVprospective_G_JHUZ_20160317_QE_r01.mzid.gz... done.
   Parsing file PDC000251/01CPTAC_OVprospective_G_JHUZ_20160317_QE_r02.mzid.gz... done.
   ...

@@ -1,6 +1,10 @@
 #!/bin/sh
 
-IMAGE="glyomics/glycosight"
+#
+# Execute using docker container
+#
+
+IMAGE="glyomics/glycosight:latest"
 
 USER="`id -u`:`id -g`"
 CUR=`pwd`

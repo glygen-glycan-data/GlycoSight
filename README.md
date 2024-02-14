@@ -4,7 +4,8 @@ GlycoSight parses peptide identification results, in mzIdentML format, to find p
 
 Notes: 
 1. mzIdentML peptide identication results are filtered at 1% spectral FDR.
-2. The sample is presumed to be human (peptides are re-aligned to UniProt human protein sequences)
+2. No protein parsimony analysis is carried out, the output should not be taken as evidence for the protein in the sample.
+3. The sample is presumed to be human (peptides are re-aligned to UniProt human protein sequences)
 
 ## Docker container usage
 

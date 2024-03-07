@@ -30,7 +30,6 @@ for pi in db.ions():
                     if ms.position in sites:                                                               
                         prpos = al.start+ms.position
                         freq[(pracc,prpos)] += len(pi.spectra())
-                        freq[(pracc,prpos)] += len(pi.spectra())
                         pepseq1 = list(pepseq)
                         pepseq1[ms.position-1] = pepseq1[ms.position-1].lower()
                         pepseq1 = "".join(pepseq1)

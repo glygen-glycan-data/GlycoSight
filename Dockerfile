@@ -3,6 +3,8 @@ FROM glyomics/apiframework:latest
 RUN mkdir -p /GlycoSight/bin /GlycoSight/lib /GlycoSight/fasta /data
 ADD bin /GlycoSight/bin
 ADD VERSION CPTACREPVER CANONSEQVER /GlycoSight
+ADD lib/msgfplus /GlycoSight/lib/msgfplus
+ADD lib/jdk1.8.0_391 /GlycoSight/lib/jdk1.8.0_391
 
 ARG CPTACREPVER
 RUN cd /GlycoSight/lib; wget -q -O - "http://cptac-cdap.georgetown.edu.s3-website-us-east-1.amazonaws.com/CPTAC-CDAP-Reports-${CPTACREPVER}.linux-x86_64.tgz" | tar xzf - 

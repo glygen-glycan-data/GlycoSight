@@ -15,4 +15,4 @@ echo -n "Mapping peptides to canonical UniProt sequences... " 1>&2
 $PYTHON3 $CMDBASE/pepremap1 -q -d "$PSMDB" -s $DIR/../fasta/human_protein_canonicalsequences.fasta --pracc UniProtIsoform 2> >( fgrep -v Cached >&2 )
 echo "done." 1>&2
 $PYTHON3 $CMDBASE/psmdb-shell "$PSMDB" $DIR/extract.psmdbsh
-rm -f "$PSMDB"
+# rm -f "$PSMDB"

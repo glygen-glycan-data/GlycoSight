@@ -9,5 +9,8 @@ docker build --build-arg "CPTACREPVER=${CPTACREPVER}" \
              --build-arg "TOOLVER=${VERSION}" \
              -t glyomics/glycosight:${VERSION} \
              -t glyomics/glycosight:latest \
+             --no-cache \
+             --pull \
+             --progress plain \
              .
 

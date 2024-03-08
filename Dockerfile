@@ -10,7 +10,10 @@ ARG CPTACREPVER
 RUN cd /GlycoSight/lib; wget -q -O - "http://cptac-cdap.georgetown.edu.s3-website-us-east-1.amazonaws.com/CPTAC-CDAP-Reports-${CPTACREPVER}.linux-x86_64.tgz" | tar xzf - 
 
 ARG CANONSEQVER
-RUN cd /GlycoSight/fasta; wget -q --no-check-certificate "https://data.glygen.org/ln2data/releases/data/${CANONSEQVER}/reviewed/human_protein_canonicalsequences.fasta"; /GlycoSight/lib/CPTAC-CDAP-Reports/compress_seq-Linux-x86_64.exe -i human_protein_canonicalsequences.fasta -E 36
+RUN cd /GlycoSight/fasta; \
+    wget -q --no-check-certificate "https://data.glygen.org/ln2data/releases/data/${CANONSEQVER}/reviewed/human_protein_canonicalsequences.fasta"; \
+    /GlycoSight/lib/CPTAC-CDAP-Reports/compress_seq-Linux-x86_64.exe -i human_protein_canonicalsequences.fasta -E 36; \
+    /GlycoSight/lib/jdk1.8.0_391/bin/java -Xmx2G -cp /GlycoSight/lib/msgfplus/MSGFPlus-v20170127.jar edu.ucsd.msjava.msdbsearch.BuildSA -d human_protein_canonicalsequences.fasta -tda 2
 
 ARG TOOLVER
 

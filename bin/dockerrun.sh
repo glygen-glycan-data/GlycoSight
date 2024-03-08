@@ -21,8 +21,11 @@ case "$1" in
 esac
 
 if [ $1 == "msgfplus" -o $1 == "nlinkedsites" ]; then
-  docker run -u $USER -v $CUR:/data/:Z --rm "$IMAGE" ./bin/"$1".sh "$@"
+  SCRIPT="$1"
+  shift
+  docker run -u $USER -v $CUR:/data/:Z --rm "$IMAGE" /GlycoSight/bin/$SCRIPT.sh "$@"
 else
+  shift
   docker run -v $CUR:/data/:Z --rm chambm/pwiz-skyline-i-agree-to-the-vendor-licenses:latest wine msconvert "$@"
 fi
 
